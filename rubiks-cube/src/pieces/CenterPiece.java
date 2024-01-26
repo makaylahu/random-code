@@ -1,3 +1,3 @@
-public class CenterPiece {
+public class CenterPiece implements Piece {
   
 }
