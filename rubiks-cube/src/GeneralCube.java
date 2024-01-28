@@ -6,22 +6,8 @@ public class GeneralCube implements Cube {
     }
 
     @Override
-    public int getSize() {
-        return this.size;
-    }
+    public int getSize() {return this.size;}
 
     @Override
-    public void rotate(String direction) {
-
-    }
-
-    @Override
-    public void turnRow(Face front, int row) {
-
-    }
-
-    @Override
-    public void turnCol(Face front, int col) {
-
-    }
+    public void rotate(String direction) {}
 }

@@ -22,15 +22,27 @@ public class Face {
                 colorGrid[row][col] = color;
             }
         }
+
+        //faces loop around
+        right = this; left = this; up = this; down = this;
     }
 
     /*
-    * MOVES
-    * - turns face clockwise or counterclockwise
+    * RETRIEVE faces around
     * */
-    public void clockwise() {
+    public Face getRight() {return this.right;}
+    public Face getLeft() {return this.left;}
+    public Face getUp() {return this.up;}
+    public Face getDown() {return this.down;}
 
-    }
+    /*
+    * MOVES
+    * (1) TURNS face clockwise or counterclockwise
+    * (2) a column/row in the face is turned
+    * */
+    public void clockwise() {}
 
     public void counterclockwise() {}
+
+
 }
