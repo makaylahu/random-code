@@ -44,5 +44,14 @@ public class Face {
 
     public void counterclockwise() {}
 
+    public void turnRowClockwise(int row) {
+        if (row == 0) {
+            this.up.clockwise();
+        } else if (row == homeCube.getSize()) {
+            this.down.clockwise();
+        } else {
+
+        }
+    }
 
 }
