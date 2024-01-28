@@ -1,22 +1,17 @@
 public class ThreeByThreeCube implements Cube {
 
     private Face top; //forces direction of other faces
-    private int size;
+    private static final int size = 3;
 
     public ThreeByThreeCube() {
         top = new Face(this, "white");
-        size = 3;
     }
 
+    @Override
     public int getSize() {
         return size;
     }
 
-    /*
-    * CUBE ROTATIONS
-    * - can turn cube along any axis
-    * - top face changes
-    * */
-
-
+    @Override
+    public void rotate(String direction) {}
 }
