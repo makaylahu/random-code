@@ -8,9 +8,15 @@ public class ThreeByThreeCube implements Cube {
     }
 
     @Override
-    public int getSize() {
-        return size;
+    public int getSize() {return size;}
+
+    @Override
+    public void turnRow(Face front, int row) {
+
     }
+
+    @Override
+    public void turnCol(Face front, int col) {}
 
     @Override
     public void rotate(String direction) {}
