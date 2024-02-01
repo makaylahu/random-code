@@ -7,7 +7,7 @@ public class Cube {
         this.top = new Face(this, "yellow");
         this.front = new Face(this, "blue");
         addFace(front, top, "UP");
-
+        addFace(front, new Face(this, "red"), "RIGHT");
     }
 
     /*
@@ -17,15 +17,10 @@ public class Cube {
     public void addFace(Face f1, Face f2, String direction) {
         int numRotations = 0;
         try {
-            if (direction == "UP") {
-                numRotations = 0;
-            } else if (direction == "RIGHT") {
-                numRotations = 1;
-            } else if (direction == "DOWN") {
-                numRotations = 2;
-            } else if (direction == "LEFT") {
-                numRotations = 3;
-            }
+            if (direction == "UP") {numRotations = 0;}
+            else if (direction == "RIGHT") {numRotations = 1;}
+            else if (direction == "DOWN") {numRotations = 2;}
+            else if (direction == "LEFT") {numRotations = 3;}
         } catch (Exception e) {
             System.out.println("Can only add Face in UP, RIGHT, DOWN, or LEFT direction");
         }
