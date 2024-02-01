@@ -23,7 +23,7 @@ public class Face {
             }
         }
 
-        //faces loop around
+        //faces loop around (like doubly linked lists)
         right = this; left = this; up = this; down = this;
     }
 
@@ -34,6 +34,14 @@ public class Face {
     public Face getLeft() {return this.left;}
     public Face getUp() {return this.up;}
     public Face getDown() {return this.down;}
+
+    /*
+    * SET faces around this face
+    * */
+    public void setRight(Face f) {this.right = f;}
+    public void setLeft(Face f) {this.left = f;}
+    public void setUp(Face f) {this.up = f;}
+    public void setDown(Face f) {this.down = f;}
 
     /*
     * MOVES
