@@ -1,13 +1,14 @@
-public class GeneralCube implements Cube {
+public class GeneralCube extends Cube {
     private int size;
 
     public GeneralCube(int size) {
         this.size = size;
     }
 
-    @Override
     public int getSize() {return this.size;}
 
-    @Override
+    public void addFace(Face f1, Face f2, String direction) {
+    }
+
     public void rotate(String direction) {}
 }
