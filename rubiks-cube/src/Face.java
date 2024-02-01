@@ -44,6 +44,21 @@ public class Face {
     public void setDown(Face f) {this.down = f;}
 
     /*
+    * ADDS a face in given direction (RIGHT, LEFT, UP, DOWN)
+    * */
+    public void addFace(Face f, String direction) {
+
+    }
+
+    /*
+    * ROTATES cube so that this face is in the front
+    * */
+    public void rotateThisFront() {
+        if (this.homeCube.getFront().equals(this)) {return;}
+
+    }
+
+    /*
     * MOVES
     * (1) TURNS face clockwise or counterclockwise
     * (2) a column/row in the face is turned
