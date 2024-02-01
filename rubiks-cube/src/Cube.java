@@ -13,6 +13,8 @@ public class Cube {
     /*
      * adds a face in given direction
      * can only add in (1) UP and (2) RIGHT directions
+     *
+     * thoughts - do not need to specify what main face is? --> front face, or else rotations wont work
      * */
     public void addFace(Face f1, Face f2, String direction) {
         int numRotations = 0;
