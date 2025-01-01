@@ -55,7 +55,6 @@ public class Face {
     * */
     public void rotateThisFront() {
         if (this.homeCube.getFront().equals(this)) {return;}
-
     }
 
     /*
