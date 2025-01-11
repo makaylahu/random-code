@@ -120,7 +120,7 @@ public class Grid {
         } else if (dir == W) {
             return testWordDir(word.substring(1), dir, x-1, y);
         } else {
-            return testWordDir(word.substring(1), N, x-1, y-1);
+            return testWordDir(word.substring(1), dir, x-1, y-1);
         }
     }
 
