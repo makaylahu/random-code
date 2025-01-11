@@ -1,8 +1,14 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class CrosswordMain {
     public static void main(String[] args) {
+        scannerMode();
+        //frameMode();
+    }
+
+    private static void scannerMode() {
         Grid grid = new Grid();
 
         Scanner scanner = new Scanner(System.in);
@@ -51,5 +57,10 @@ public class CrosswordMain {
 
         System.out.println("Here is your crossword puzzle:");
         System.out.println(grid.toString());
+    }
+
+    private static void frameMode() {
+        JFrame frame = new JFrame("Crossword");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
