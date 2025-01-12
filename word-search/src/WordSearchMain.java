@@ -10,19 +10,20 @@ public class WordSearchMain {
 
     public static void main(String[] args) throws FileNotFoundException {
         //scannerMode();
-        //frameMode();
-        random();
+        randomMode();
 
         System.out.println("Here is your crossword puzzle:");
         System.out.println(grid.toString());
     }
 
-    private static void frameMode() {
+    private static void showFrame() {
         JFrame frame = new JFrame("Crossword");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
     }
 
-    private static void random() throws FileNotFoundException {
+    private static void randomMode() throws FileNotFoundException {
         int size = 10;
         grid = new Grid(size);
 
@@ -45,7 +46,7 @@ public class WordSearchMain {
                 words.add(validWords.get(index));
             }
             success = grid.loadGrid(words);
-            System.out.println(success + " " + randNumWords);
+            //System.out.println(success + " " + randNumWords);
         }
     }
 
