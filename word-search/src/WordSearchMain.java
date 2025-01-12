@@ -1,16 +1,75 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import javax.swing.*;
 
 public class WordSearchMain {
-    public static void main(String[] args) {
-        scannerMode();
+    private static Grid grid = new Grid();
+    private static final int numValidWords = 8159;
+
+    public static void main(String[] args) throws FileNotFoundException {
+        //scannerMode();
         //frameMode();
+        random();
+
+        System.out.println("Here is your crossword puzzle:");
+        System.out.println(grid.toString());
+    }
+
+    private static void frameMode() {
+        JFrame frame = new JFrame("Crossword");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private static void random() throws FileNotFoundException {
+        int size = 10;
+        grid = new Grid(size);
+
+        ArrayList<String> validWords = readFile("words/valid_word_list.txt");
+        int minNumWords = 10;
+        boolean success = false;
+        while (!success) {
+            grid.clearGrid();
+            int randNumWords = minNumWords + (int) (Math.random() * 4);
+            int[] indices = new int[randNumWords];
+            for (int rep = 0; rep < randNumWords; rep++) {
+                int randNum = (int) (Math.random() * numValidWords);
+                while (inArray(indices, randNum)) {
+                    randNum = (int) (Math.random() * numValidWords);
+                }
+                indices[rep] = randNum;
+            }
+            ArrayList<String> words = new ArrayList<>();
+            for (int index : indices) {
+                words.add(validWords.get(index));
+            }
+            success = grid.loadGrid(words);
+            System.out.println(success + " " + randNumWords);
+        }
+    }
+
+    private static ArrayList<String> readFile(String filename) throws FileNotFoundException {
+        File file = new File(filename);
+        Scanner scanner = new Scanner(file);
+        ArrayList<String> validWords = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            validWords.add(scanner.nextLine());
+        }
+        scanner.close();
+        return validWords;
+    }
+
+    private static boolean inArray(int[] arr, int num) {
+        for (int arrNum : arr) {
+            if (num == arrNum)
+                return true;
+        }
+        return false;
     }
 
     private static void scannerMode() {
-        Grid grid = new Grid();
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Square or Rectangle?");
 
@@ -53,14 +112,8 @@ public class WordSearchMain {
                 finish = true;
             }
         }
-        grid.loadGrid(words);
-
-        System.out.println("Here is your crossword puzzle:");
-        System.out.println(grid.toString());
-    }
-
-    private static void frameMode() {
-        JFrame frame = new JFrame("Crossword");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if(!grid.loadGrid(words)) {
+            System.out.println("Words are not fitting in the grid.");
+        }
     }
 }
