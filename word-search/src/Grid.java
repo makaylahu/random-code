@@ -39,14 +39,12 @@ public class Grid {
         this.loadGrid(words);
     }
 
-    public void loadGrid(ArrayList<String> words) {
+    public boolean loadGrid(ArrayList<String> words) {
         this.words = words;
         for (String word : words) {
             word = word.toUpperCase();
-            boolean placed = tryAddWord(word);
-            if (!placed) {
-                System.out.println("Error: " + word + " cannot be added. Try a different list of words or a larger grid");
-                System.exit(0);
+            if (!tryAddWord(word)) {
+                return false;
             }
         }
 
@@ -60,6 +58,7 @@ public class Grid {
                 }
             }
         }
+        return true;
     }
 
     private boolean tryAddWord(String word) {
@@ -146,6 +145,14 @@ public class Grid {
             addWord (word.substring(1), dir, x-1, y);
         } else {
             addWord (word.substring(1), dir, x-1, y-1);
+        }
+    }
+
+    public void clearGrid() {
+        for (int y = 0; y < grid.length; y++) {
+            for (int x = 0; x < grid[0].length; x++) {
+                grid[y][x] = '\u0000';
+            }
         }
     }
 
