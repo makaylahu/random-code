@@ -20,7 +20,7 @@ public class WordSearchMain {
         JFrame frame = new JFrame("Crossword");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        
+        ImageIcon homePage = new ImageIcon();
     }
 
     private static void randomMode() throws FileNotFoundException {
