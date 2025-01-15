@@ -20,7 +20,7 @@ public class WordSearchMain {
         JFrame frame = new JFrame("Crossword");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
+        
     }
 
     private static void randomMode() throws FileNotFoundException {
