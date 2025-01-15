@@ -11,6 +11,7 @@ public class WordSearchMain {
     public static void main(String[] args) throws FileNotFoundException {
         //scannerMode();
         randomMode();
+        showFrame();
 
         System.out.println("Here is your crossword puzzle:");
         System.out.println(grid.toString());
@@ -18,9 +19,10 @@ public class WordSearchMain {
 
     private static void showFrame() {
         JFrame frame = new JFrame("Crossword");
+        frame.setSize(1024, 768);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ImageIcon homePage = new ImageIcon();
+        ImageIcon homePage = new ImageIcon("gui-images\\title-page.jpg");
         frame.add(new JLabel(homePage));
 
         frame.pack();
