@@ -1,5 +1,5 @@
 public class Face {
-
+    //gahhh need to reorganize this code.... i don't think this will work
     private String[][] colorGrid;
     /* ------------------
     * | 0,0 | 0,1 | 0,2 |
