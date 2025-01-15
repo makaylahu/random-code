@@ -21,6 +21,10 @@ public class WordSearchMain {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ImageIcon homePage = new ImageIcon();
+        frame.add(new JLabel(homePage));
+
+        frame.pack();
+        frame.setVisible(true);
     }
 
     private static void randomMode() throws FileNotFoundException {
