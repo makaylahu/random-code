@@ -173,4 +173,12 @@ public class Grid {
 
         return result;
     }
+
+    public ArrayList<String> getWords() {
+        return words;
+    }
+
+    public char[][] getChars() {
+        return grid;
+    }
 }
