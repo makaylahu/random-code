@@ -6,14 +6,14 @@ public class Grid {
     private ArrayList<String> words;
 
     //directions
-    public static int N = 0;
-    public static int NE = 1;
-    public static int E = 2;
-    public static int SE = 3;
-    public static int S = 4;
-    public static int SW = 5;
-    public static int W = 6;
-    public static int NW = 7;
+    public final int N = 0;
+    public final int NE = 1;
+    public final int E = 2;
+    public final int SE = 3;
+    public final int S = 4;
+    public final int SW = 5;
+    public final int W = 6;
+    public final int NW = 7;
 
     //default: length = 5
     public Grid() {
