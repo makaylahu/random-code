@@ -54,7 +54,7 @@ public class WordSearchMain {
     }
 
     private static JLabel gamePage(JFrame frame) {
-        JLabel gamePage = new JLabel(new ImageIcon("gui-images\\blank.jpg")); //fill out file path
+        JLabel gamePage = new JLabel(new ImageIcon("gui-images\\game-screen.jpg")); //fill out file path
         Grid grid = randomMode();
         System.out.println(grid.toString());
 
@@ -83,7 +83,10 @@ public class WordSearchMain {
 
         //regenerate button
         JButton newGridButton = new JButton();
-        newGridButton.setBounds(700, 500, 100, 100);
+        newGridButton.setBounds(650, 590, 100, 100);
+        newGridButton.setOpaque(false);
+        newGridButton.setContentAreaFilled(false);
+        newGridButton.setBorderPainted(false);
         newGridButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt){
