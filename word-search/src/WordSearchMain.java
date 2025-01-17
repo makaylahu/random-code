@@ -34,7 +34,7 @@ public class WordSearchMain {
         ImageIcon homePage = new ImageIcon("gui-images\\title-page.jpg");
         JLabel home = new JLabel(homePage);
         JButton startButton = new JButton();
-        startButton.setBounds(80, 405, 400, 160);
+        startButton.setBounds(110, 425, 400, 160);
         startButton.setOpaque(false);
         startButton.setContentAreaFilled(false);
         startButton.setBorderPainted(false);
