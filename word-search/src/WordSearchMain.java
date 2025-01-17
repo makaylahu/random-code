@@ -59,6 +59,8 @@ public class WordSearchMain {
         char[][] charGrid = grid.getChars();
         ArrayList<String> words = grid.getWords();
 
+
+
         //regenerate button
         JButton newGridButton = new JButton();
         newGridButton.setBounds(100, 100, 100, 100);
@@ -67,6 +69,7 @@ public class WordSearchMain {
             public void actionPerformed(ActionEvent evt){
                 frame.remove(gamePage);
                 frame.add(wordSearchStart(frame));
+                frame.pack();
             }
         });
 
