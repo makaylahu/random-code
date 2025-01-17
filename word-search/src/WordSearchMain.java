@@ -1,3 +1,4 @@
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -5,35 +6,77 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class WordSearchMain {
-    private static Grid grid = new Grid();
     private static final int numValidWords = 8159;
+    private static final ArrayList<String> validWords;
 
-    public static void main(String[] args) throws FileNotFoundException {
-        //scannerMode();
-        randomMode();
-        showFrame();
-
-        System.out.println("Here is your crossword puzzle:");
-        System.out.println(grid.toString());
+    static {
+        try {
+            validWords = readFile("words/valid_word_list.txt");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private static void showFrame() {
+    public static void main(String[] args) {
+        //grid = scannerMode();
+        Grid grid = randomMode();
+        System.out.println("Here is your crossword puzzle:");
+        System.out.println(grid.toString());
+
+        guiMode();
+    }
+
+    private static void guiMode() {
         JFrame frame = new JFrame("Crossword");
-        frame.setSize(1024, 768);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ImageIcon homePage = new ImageIcon("gui-images\\title-page.jpg");
-        frame.add(new JLabel(homePage));
+        JLabel home = new JLabel(homePage);
+        JButton startButton = new JButton();
+        startButton.setBounds(80, 405, 400, 160);
+        startButton.setOpaque(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setBorderPainted(false);
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt){
+                frame.remove(home);
+                frame.add(wordSearchStart(frame));
+                frame.pack();
+            }
+        });
+        home.add(startButton);
+        frame.add(home);
 
         frame.pack();
         frame.setVisible(true);
     }
 
-    private static void randomMode() throws FileNotFoundException {
-        int size = 10;
-        grid = new Grid(size);
+    private static JLabel wordSearchStart(JFrame frame) {
+        JLabel gamePage = new JLabel(new ImageIcon("gui-images\\")); //fill out file path
+        Grid grid = randomMode();
 
-        ArrayList<String> validWords = readFile("words/valid_word_list.txt");
+        char[][] charGrid = grid.getChars();
+        ArrayList<String> words = grid.getWords();
+
+        //regenerate button
+        JButton newGridButton = new JButton();
+        newGridButton.setBounds(100, 100, 100, 100);
+        newGridButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt){
+                frame.remove(gamePage);
+                frame.add(wordSearchStart(frame));
+            }
+        });
+
+        return gamePage;
+    }
+
+    private static Grid randomMode() {
+        int size = 10;
+        Grid grid = new Grid(size);
+
         int minNumWords = 10;
         boolean success = false;
         while (!success) {
@@ -54,6 +97,7 @@ public class WordSearchMain {
             success = grid.loadGrid(words);
             //System.out.println(success + " " + randNumWords);
         }
+        return grid;
     }
 
     private static ArrayList<String> readFile(String filename) throws FileNotFoundException {
@@ -76,7 +120,8 @@ public class WordSearchMain {
         return false;
     }
 
-    private static void scannerMode() {
+    private static Grid scannerMode() {
+        Grid grid = new Grid();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Square or Rectangle?");
 
@@ -122,5 +167,6 @@ public class WordSearchMain {
         if(!grid.loadGrid(words)) {
             System.out.println("Words are not fitting in the grid.");
         }
+        return grid;
     }
 }
