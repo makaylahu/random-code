@@ -79,6 +79,7 @@ public class WordSearchMain {
         words += "</html>";
         JLabel wordsLabel = new JLabel(words);
         wordsLabel.setBounds(710, 85, 300, 300);
+        wordsLabel.setForeground(Color.white);
         gamePage.add(wordsLabel);
 
         //regenerate button
