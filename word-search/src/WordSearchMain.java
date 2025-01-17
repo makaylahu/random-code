@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,10 +19,10 @@ public class WordSearchMain {
     }
 
     public static void main(String[] args) {
-        //grid = scannerMode();
+        /*grid = scannerMode();
         Grid grid = randomMode();
         System.out.println("Here is your crossword puzzle:");
-        System.out.println(grid.toString());
+        System.out.println(grid.toString());*/
 
         guiMode();
     }
@@ -41,7 +42,7 @@ public class WordSearchMain {
             @Override
             public void actionPerformed(ActionEvent evt){
                 frame.remove(home);
-                frame.add(wordSearchStart(frame));
+                frame.add(gamePage(frame));
                 frame.pack();
             }
         });
@@ -52,26 +53,46 @@ public class WordSearchMain {
         frame.setVisible(true);
     }
 
-    private static JLabel wordSearchStart(JFrame frame) {
-        JLabel gamePage = new JLabel(new ImageIcon("gui-images\\")); //fill out file path
+    private static JLabel gamePage(JFrame frame) {
+        JLabel gamePage = new JLabel(new ImageIcon("gui-images\\blank.jpg")); //fill out file path
         Grid grid = randomMode();
+        System.out.println(grid.toString());
 
+        //character grid
         char[][] charGrid = grid.getChars();
-        ArrayList<String> words = grid.getWords();
+        JLabel gridLabel = new JLabel();
+        gridLabel.setLayout(new GridLayout(10, 10));
+        gridLabel.setBounds(100, 100, 500, 500);
+        for (char[] row : charGrid) {
+            for (char letter : row) {
+                gridLabel.add(new JLabel(String.valueOf(letter)));
+            }
+        }
+        gamePage.add(gridLabel);
 
-
+        //list of words
+        ArrayList<String> wordsList = grid.getWords();
+        String words = "<html>";
+        for (String word : wordsList) {
+            words += word + "<br/>";
+        }
+        words += "</html>";
+        JLabel wordsLabel = new JLabel(words);
+        wordsLabel.setBounds(700, 100, 300, 300);
+        gamePage.add(wordsLabel);
 
         //regenerate button
         JButton newGridButton = new JButton();
-        newGridButton.setBounds(100, 100, 100, 100);
+        newGridButton.setBounds(700, 500, 100, 100);
         newGridButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt){
                 frame.remove(gamePage);
-                frame.add(wordSearchStart(frame));
+                frame.add(gamePage(frame));
                 frame.pack();
             }
         });
+        gamePage.add(newGridButton);
 
         return gamePage;
     }
