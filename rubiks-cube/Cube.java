@@ -1,12 +1,11 @@
+import java.util.HashMap;
+
 public class Cube {
-    private Face[] faces;
+    private HashMap<Colors, Face> faces;
 
     public Cube () {
-        faces = new Face[6];
-        int index = 0;
-
         for (Colors c : Colors.values()) {
-            faces[index] = new Face(c);
+            faces.put(c, new Face(c));
         }
     }
 }
