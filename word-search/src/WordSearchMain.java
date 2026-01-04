@@ -31,6 +31,14 @@ public class WordSearchMain {
         JFrame frame = new JFrame("Crossword");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JLabel home = homePage(frame);
+        frame.add(home);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private static JLabel homePage(JFrame frame) {
         ImageIcon homePage = new ImageIcon("gui-images\\title-page.jpg");
         JLabel home = new JLabel(homePage);
         JButton startButton = new JButton();
@@ -47,10 +55,8 @@ public class WordSearchMain {
             }
         });
         home.add(startButton);
-        frame.add(home);
 
-        frame.pack();
-        frame.setVisible(true);
+        return home;
     }
 
     private static JLabel gamePage(JFrame frame) {
@@ -97,6 +103,22 @@ public class WordSearchMain {
             }
         });
         gamePage.add(newGridButton);
+
+        //home button
+        JButton homeButton = new JButton();
+        homeButton.setBounds(835, 595, 100, 100);
+        homeButton.setOpaque(false);
+        homeButton.setContentAreaFilled(false);
+        homeButton.setBorderPainted(false);
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(gamePage);
+                frame.add(homePage(frame));
+                frame.pack();
+            }
+        });
+        gamePage.add(homeButton);
 
         return gamePage;
     }
