@@ -61,9 +61,21 @@ public class Face {
         switch (d) {
             case CLOCKWISE:
                 // add mechanism
+                EdgePiece lastEdge = edgePieces.getLast();
+                edgePieces.addFirst(lastEdge);
+                edgePieces.removeLast();
+                CornerPiece lastCorner = cornerPieces.getLast();
+                cornerPieces.addFirst(lastCorner);
+                cornerPieces.removeLast();
                 break;
             case COUNTERCLOCKWISE:
                 // add mechanism
+                EdgePiece firstEdge = edgePieces.getFirst();
+                edgePieces.addLast(firstEdge);
+                edgePieces.removeFirst();
+                CornerPiece firstCorner = cornerPieces.getFirst();
+                cornerPieces.addLast(firstCorner);
+                cornerPieces.removeFirst();
                 break;
         }
     }
