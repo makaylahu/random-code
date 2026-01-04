@@ -21,4 +21,20 @@ public class Face {
     public Face (Colors c) {
 
     }
+
+    public void turn(Directions d) {
+        switch (d) {
+            case CLOCKWISE:
+                break;
+            case COUNTERCLOCKWISE:
+                break;
+        }
+    }
+    public EdgePiece[] getEdgePieces() {
+        return edgePieces;
+    }
+
+    public CornerPiece[] getCornerPiece() {
+        return cornerPieces;
+    }
 }
