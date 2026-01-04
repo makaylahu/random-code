@@ -28,3 +28,5 @@ CLASSES
     - has: int[] with 2 colors
 - CornerPiece
     - has: int[] with 3 colors (clockwise permutation)
+
+***Need to figure out how to share pieces between faces
