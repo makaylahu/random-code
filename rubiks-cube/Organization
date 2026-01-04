@@ -1,0 +1,30 @@
+A rubik's cube has 6 faces (WHITE, YELLOW, RED, ORANGE, GREEN, BLUE)
+- WHITE and YELLOW are opposites
+- RED and ORANGE
+- GREEN and BLUE
+
+WHITE = 1
+RED = 2
+BLUE = 3
+YELLOW = 4
+ORANGE = 5
+GREEN = 6
+
+Each face has 8 moving pieces, shared with other faces
+- 4 edge pieces, each shared with one other face
+- 4 corner pieces, each shared with two other faces
+
+When turn occurs, face rotates, neighboring faces update array accordingly
+
+
+CLASSES
+- Cube
+    - has: 6 faces
+    - interface
+- Face
+    - has: EdgePiece[], CornerPiece[]
+    - turning function (clockwise and counterclockwise)
+- EdgePiece
+    - has: int[] with 2 colors
+- CornerPiece
+    - has: int[] with 3 colors (counterclockwise permutation)
