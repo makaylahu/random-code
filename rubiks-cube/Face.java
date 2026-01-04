@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 public class Face {
     private Colors color;
     private Colors[] neighbours; //clockwise permutation
-    private EdgePiece[] edgePieces;
-    private CornerPiece[] cornerPieces; //clockwise permutation
+    private ArrayList<EdgePiece> edgePieces;
+    private ArrayList<CornerPiece> cornerPieces; //clockwise permutation
 
-    private class EdgePiece {
+    private static class EdgePiece {
         private Colors[] colors;
 
         EdgePiece(Colors[] colors) {
@@ -12,7 +14,7 @@ public class Face {
         }
     }
 
-    private class CornerPiece {
+    private static class CornerPiece {
         private Colors[] colors;
 
         CornerPiece(Colors[] colors) {
@@ -43,18 +45,16 @@ public class Face {
                 break;
         }
 
-        edgePieces = new EdgePiece[4];
-        for (int index = 0; index < edgePieces.length; index++) {
+        for (int index = 0; index < neighbours.length; index++) {
             Colors[] edgeColors = new Colors[]{c, neighbours[index]};
-            edgePieces[index] = new EdgePiece (edgeColors);
+            edgePieces.add (new EdgePiece (edgeColors));
         }
 
-        cornerPieces = new CornerPiece[4];
-        for (int index = 0; index < cornerPieces.length - 1; index++) {
+        for (int index = 0; index < neighbours.length - 1; index++) {
             Colors[] cornerColors = new Colors[]{c, neighbours[index], neighbours[index + 1]};
-            cornerPieces[index] = new CornerPiece (cornerColors);
+            cornerPieces.add (new CornerPiece (cornerColors));
         }
-        cornerPieces[3] = new CornerPiece(new Colors[]{c, neighbours[3], neighbours[0]});
+        cornerPieces.add (new CornerPiece(new Colors[]{c, neighbours[3], neighbours[0]}));
     }
 
     public void turn(Directions d) {
@@ -67,11 +67,11 @@ public class Face {
                 break;
         }
     }
-    public EdgePiece[] getEdgePieces() {
+    public ArrayList<EdgePiece> getEdgePieces() {
         return edgePieces;
     }
 
-    public CornerPiece[] getCornerPiece() {
+    public ArrayList<CornerPiece> getCornerPiece() {
         return cornerPieces;
     }
 }
