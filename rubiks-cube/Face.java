@@ -27,19 +27,19 @@ public class Face {
                 neighbours = new Colors[]{Colors.RED, Colors.GREEN, Colors.ORANGE, Colors.BLUE};
                 break;
             case RED:
-                neighbours = new Colors[]{Colors.WHITE, Colors.BLUE, Colors.YELLOW, Colors.GREEN};
+                neighbours = new Colors[]{Colors.BLUE, Colors.YELLOW, Colors.GREEN, Colors.WHITE};
                 break;
             case BLUE:
                 neighbours = new Colors[]{Colors.WHITE, Colors.ORANGE, Colors.YELLOW, Colors.RED};
                 break;
             case YELLOW:
-                neighbours = new Colors[]{Colors.ORANGE, Colors.GREEN, Colors.RED, Colors.BLUE};
+                neighbours = new Colors[]{Colors.GREEN, Colors.RED, Colors.BLUE, Colors.ORANGE};
+                break;
+            case GREEN:
+                neighbours = new Colors[]{Colors.ORANGE, Colors.WHITE, Colors.RED, Colors.YELLOW};
                 break;
             case ORANGE:
                 neighbours = new Colors[]{Colors.YELLOW, Colors.BLUE, Colors.WHITE, Colors.GREEN};
-                break;
-            case GREEN:
-                neighbours = new Colors[]{Colors.YELLOW, Colors.ORANGE, Colors.WHITE, Colors.RED};
                 break;
         }
 
