@@ -43,7 +43,18 @@ public class Face {
                 break;
         }
 
+        edgePieces = new EdgePiece[4];
+        for (int index = 0; index < edgePieces.length; index++) {
+            Colors[] edgeColors = new Colors[]{c, neighbours[index]};
+            edgePieces[index] = new EdgePiece (edgeColors);
+        }
 
+        cornerPieces = new CornerPiece[4];
+        for (int index = 0; index < cornerPieces.length - 1; index++) {
+            Colors[] cornerColors = new Colors[]{c, neighbours[index], neighbours[index + 1]};
+            cornerPieces[index] = new CornerPiece (cornerColors);
+        }
+        cornerPieces[3] = new CornerPiece(new Colors[]{c, neighbours[3], neighbours[0]});
     }
 
     public void turn(Directions d) {
