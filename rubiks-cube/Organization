@@ -27,4 +27,4 @@ CLASSES
 - EdgePiece
     - has: int[] with 2 colors
 - CornerPiece
-    - has: int[] with 3 colors (counterclockwise permutation)
+    - has: int[] with 3 colors (clockwise permutation)
