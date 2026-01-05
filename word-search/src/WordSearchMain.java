@@ -71,7 +71,19 @@ public class WordSearchMain {
         gridLabel.setBounds(100, 100, 500, 500);
         for (char[] row : charGrid) {
             for (char letter : row) {
-                gridLabel.add(new JLabel(String.valueOf(letter)));
+                JButton button = new JButton (String.valueOf(letter));
+                button.setOpaque(false);
+                button.setContentAreaFilled(false);
+                button.setBorderPainted(false);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        button.setOpaque(true);
+                        button.setBackground(Color.getHSBColor(210, 25, 90));
+
+                    }
+                });
+                gridLabel.add(button);
             }
         }
         gamePage.add(gridLabel);
