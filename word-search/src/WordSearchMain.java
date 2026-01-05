@@ -64,6 +64,9 @@ public class WordSearchMain {
         Grid grid = randomMode();
         System.out.println(grid.toString());
 
+        //properties of letters that have been clicked
+        ArrayList<JButton> clickedLetters = new ArrayList<>();
+
         //character grid
         char[][] charGrid = grid.getChars();
         JLabel gridLabel = new JLabel();
@@ -72,6 +75,8 @@ public class WordSearchMain {
         for (char[] row : charGrid) {
             for (char letter : row) {
                 JButton button = new JButton (String.valueOf(letter));
+                button.setFont(new Font("Verdana", Font.PLAIN, 16));
+                button.setBackground(Color.getHSBColor(210, 25, 90));
                 button.setOpaque(false);
                 button.setContentAreaFilled(false);
                 button.setBorderPainted(false);
@@ -79,8 +84,7 @@ public class WordSearchMain {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         button.setOpaque(true);
-                        button.setBackground(Color.getHSBColor(210, 25, 90));
-
+                        clickedLetters.add(button);
                     }
                 });
                 gridLabel.add(button);
@@ -99,6 +103,25 @@ public class WordSearchMain {
         wordsLabel.setBounds(710, 85, 300, 300);
         wordsLabel.setForeground(Color.white);
         gamePage.add(wordsLabel);
+
+        //undo highlight button
+        JButton undoButton = new JButton();
+        undoButton.setBounds(888, 445, 80, 80);
+//        undoButton.setOpaque(false);
+//        undoButton.setBorderPainted(false);
+//        undoButton.setContentAreaFilled(false);
+        undoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                while (!clickedLetters.isEmpty()) {
+                    JButton b = clickedLetters.get(0);
+                    b.setOpaque(false);
+                    b.repaint();
+                    clickedLetters.remove(b);
+                }
+            }
+        });
+        gamePage.add(undoButton);
 
         //regenerate button
         JButton newGridButton = new JButton();
