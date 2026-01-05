@@ -83,8 +83,14 @@ public class WordSearchMain {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        button.setOpaque(true);
-                        clickedLetters.add(button);
+                        if (!button.isOpaque()) {
+                            button.setOpaque(true);
+                            clickedLetters.add(button);
+                        } else {
+                            button.setOpaque(false);
+                            button.repaint();
+                            clickedLetters.remove(button);
+                        }
                     }
                 });
                 gridLabel.add(button);
@@ -107,9 +113,9 @@ public class WordSearchMain {
         //undo highlight button
         JButton undoButton = new JButton();
         undoButton.setBounds(888, 445, 80, 80);
-//        undoButton.setOpaque(false);
-//        undoButton.setBorderPainted(false);
-//        undoButton.setContentAreaFilled(false);
+        undoButton.setOpaque(false);
+        undoButton.setBorderPainted(false);
+        undoButton.setContentAreaFilled(false);
         undoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
