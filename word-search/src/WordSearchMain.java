@@ -72,8 +72,10 @@ public class WordSearchMain {
         JLabel gridLabel = new JLabel();
         gridLabel.setLayout(new GridLayout(10, 10));
         gridLabel.setBounds(100, 100, 500, 500);
-        for (char[] row : charGrid) {
-            for (char letter : row) {
+        for (int row = 0; row < charGrid.length; row++) {
+            for (int col = 0; col < charGrid[row].length; col++) {
+                char letter = charGrid[row][col];
+                int[] pos = {row, col};
                 JButton button = new JButton (String.valueOf(letter));
                 button.setFont(new Font("Verdana", Font.PLAIN, 16));
                 button.setBackground(Color.getHSBColor(210, 25, 90));
@@ -86,6 +88,7 @@ public class WordSearchMain {
                         if (!button.isOpaque()) {
                             button.setOpaque(true);
                             clickedLetters.add(button);
+                            checkWord(grid, clickedLetters);
                         } else {
                             button.setOpaque(false);
                             button.repaint();
@@ -106,7 +109,8 @@ public class WordSearchMain {
         }
         words += "</html>";
         JLabel wordsLabel = new JLabel(words);
-        wordsLabel.setBounds(710, 85, 300, 300);
+        wordsLabel.setFont(new Font("Verdana", Font.PLAIN, 16));
+        wordsLabel.setBounds(730, 100, 300, 300);
         wordsLabel.setForeground(Color.white);
         gamePage.add(wordsLabel);
 
@@ -189,6 +193,24 @@ public class WordSearchMain {
             //System.out.println(success + " " + randNumWords);
         }
         return grid;
+    }
+
+    private static void checkWord(Grid grid, ArrayList<JButton> clicked) {
+        ArrayList<String> words = grid.getWords();
+        String word = "";
+        for (JButton b : clicked) {
+            String s = b.getLabel();
+            word = word + s;
+        }
+        boolean gotWord =  words.contains(word);
+
+        if (!gotWord) return;
+        while (!clicked.isEmpty()) {
+            JButton b = clicked.get(0);
+            b.setOpaque(false);
+            b.repaint();
+            clicked.remove(b);
+        }
     }
 
     private static ArrayList<String> readFile(String filename) throws FileNotFoundException {
