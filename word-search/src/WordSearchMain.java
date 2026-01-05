@@ -80,7 +80,7 @@ public class WordSearchMain {
         ArrayList<String> wordsList = grid.getWords();
         String words = "<html>";
         for (String word : wordsList) {
-            words += word + "<br/>";
+            words += word.toUpperCase() + "<br/>";
         }
         words += "</html>";
         JLabel wordsLabel = new JLabel(words);
